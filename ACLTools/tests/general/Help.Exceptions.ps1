@@ -1,7 +1,8 @@
 # List of functions that should be ignored
 $global:FunctionHelpTestExceptions = @(
  'New-AccessRule',
- 'Add-AccessRule'
+ 'Add-AccessRule',
+ 'Update-ACL'
 )
 
 <#

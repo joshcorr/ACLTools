@@ -79,6 +79,6 @@
 	}
 	End
 	{
-		Write-Debug "[Add-AccessRule][$(Get-Date -Format 'HH:mm:ss')][End] Applying AccessRules"
+		#Write-Debug "[Add-AccessRule][$(Get-Date -Format 'HH:mm:ss')][End] Applying AccessRules"
 	}
 }
