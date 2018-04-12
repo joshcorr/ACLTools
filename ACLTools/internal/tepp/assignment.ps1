@@ -1,4 +1,1 @@
-<#
-# Example:
-Register-PSFTeppArgumentCompleter -Command Get-Alcohol -Parameter Type -Name ACLTools.alcohol
-#>
+Register-PSFTeppArgumentCompleter -Command Update-ACL -Parameter Type -Name ACLTools.path

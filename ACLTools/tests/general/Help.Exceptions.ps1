@@ -1,6 +1,7 @@
 # List of functions that should be ignored
 $global:FunctionHelpTestExceptions = @(
-    
+ 'New-AccessRule',
+ 'Add-AccessRule'
 )
 
 <#
@@ -10,7 +11,7 @@ $global:FunctionHelpTestExceptions = @(
   "Sqlcollaborative.Dbatools.Connection.ManagementConnectionType[]"
 #>
 $global:HelpTestEnumeratedArrays = @(
-	
+
 )
 
 <#
@@ -22,5 +23,5 @@ $global:HelpTestEnumeratedArrays = @(
   "Get-DbaCmObject"       = @("DoNotUse")
 #>
 $global:HelpTestSkipParameterType = @{
-    
+
 }
