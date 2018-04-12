@@ -1,0 +1,16 @@
+
+# ignore the settings folder and files for VSCode and PSS
+.vscode/*
+*.psproj
+*TempPoint*
+
+# Ignore staging info from Visual Studio
+library/ACLTools/.vs/*
+library/ACLTools/ACLTools/bin/*
+library/ACLTools/ACLTools/obj/*
+
+# ignore PowerShell Studio MetaData
+ACLTools/ACLTools.psproj
+ACLTools/ACLTools.psproj.bak
+ACLTools/ACLTools.psprojs
+ACLTools/ACLTools.psproj
