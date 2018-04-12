@@ -76,6 +76,7 @@
 		DefaultParameterSetName = "PreSet",
 		SupportsShouldProcess=$True
 	)]
+	[OutputType([System.Security.AccessControl.FileSystemAccessRule])]
 	Param (
 		[Parameter(Position = 0, ValueFromPipeline = $True, Mandatory = $True, ValueFromPipelineByPropertyName = $True)]
 		[Alias('user', 'username', 'samaccountname', 'alias')]
