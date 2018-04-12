@@ -1,5 +1,6 @@
 ﻿function New-AccessRule
 {
+	[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseOutputTypeCorrectly", "")]
 	<#
 		.SYNOPSIS
 			Creates a new FileSystem AccessRule.
