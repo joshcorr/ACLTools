@@ -163,9 +163,7 @@ param(
             $objACL = Get-ACL -Path $Path -ErrorAction Stop
         }
         Catch{
-            #Stop-PsfFunction
-            #Write-Error
-            #need an error action preference
+			Stop-PSFFunction -Message "Error retreiving ACL from path: $Path"
         }
 
 	}
@@ -193,12 +191,10 @@ param(
 			if($PSCmdlet.ShouldProcess("Attempting to Set-ACL for $Path with the following ACL: `n`n $shouldMessage")){
                 #foreach($p in $path){
 				    try{
-                       Set-ACL -Path $path -AclObject $objACL
+                       Set-ACL -Path $path -AclObject $objACL -ErrorAction Stop
                     }
                     catch{
-                        #Stop-PsfFunction
-                        #Write-Error
-                        #need an error action preference
+						Stop-PSFFunction -Message "Error Setting ACL of: $shouldMessage on path: $Path"
                     }
                 #}
 			}
