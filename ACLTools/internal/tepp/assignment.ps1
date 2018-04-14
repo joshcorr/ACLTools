@@ -1,1 +1,1 @@
-Register-PSFTeppArgumentCompleter -Command Update-ACL -Parameter Type -Name ACLTools.path
+#Register-PSFTeppArgumentCompleter -Command Update-ACL -Parameter Type -Name ACLTools.path

@@ -70,7 +70,9 @@
 		$results = @()
 		foreach ($A in $Acls)
 		{
-			$Rule | ForEach-Object -Process { Write-Debug "[Add-AccessRule][$(Get-Date -Format 'HH:mm:ss')] Applying $($_.IdentityReference):$($_.FileSystemRights) to ACL:$($A.Path)"; $A.AddAccessRule($_) }
+			$Rule | ForEach-Object -Process {
+			Write-Debug "[Add-AccessRule][$(Get-Date -Format 'HH:mm:ss')] Applying $($_.IdentityReference):$($_.FileSystemRights) to ACL:$($A.Path)";
+			$A.AddAccessRule($_) }
 			$results += $A
 		}
 
@@ -79,6 +81,6 @@
 	}
 	End
 	{
-		#Write-Debug "[Add-AccessRule][$(Get-Date -Format 'HH:mm:ss')][End] Applying AccessRules"
+		Write-Debug "[Add-AccessRule][$(Get-Date -Format 'HH:mm:ss')][End] Applying AccessRules"
 	}
 }
