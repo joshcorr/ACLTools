@@ -155,7 +155,7 @@ param(
 				$objUser =  New-Object System.Security.Principal.NTAccount("$Principal")
 			}
 
-		if(Test-PSFParameterBinding -ParameterName 'SetAdminOwner', 'Reset', 'DisableInheritance' -Not) {
+		if(!($PSBoundParameters.Keys -match ('SetAdminOwner|Reset|DisableInheritance'))) {
 				$objUser = New-Object System.Security.Principal.NTAccount("$Principal")
 				$objACE = New-Object System.Security.AccessControl.FileSystemAccessRule ("$objUser", "$Rights", "$InheritanceFlag", "$PropagationFlag", "$Access")
 			}
@@ -163,7 +163,7 @@ param(
             $objACL = Get-ACL -Path $Path -ErrorAction Stop
         }
         Catch{
-			Stop-PSFFunction -Message "Error retreiving ACL from path: $Path"
+			Write-Error -Message "Error retreiving ACL from path: $Path"
         }
 
 	}
@@ -194,7 +194,7 @@ param(
                        Set-ACL -Path $path -AclObject $objACL -ErrorAction Stop
                     }
                     catch{
-						Stop-PSFFunction -Message "Error Setting ACL of: $shouldMessage on path: $Path"
+						Write-Error -Message "Error Setting ACL of: $shouldMessage on path: $Path"
                     }
                 #}
 			}
