@@ -173,7 +173,7 @@ param(
 			$objACL.SetOwner($objUser)
 		}
 		elseif ($Reset) {
-			$($objACL.SetAccessRuleProtection($false, $true))
+			$($objACL.SetAccessRuleProtection($false, $false))
 		}
 		elseif ($DisableInheritance){
 			$($objACL.SetAccessRuleProtection($true, $true))
