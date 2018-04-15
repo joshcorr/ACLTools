@@ -1,11 +1,180 @@
-TOPIC
+﻿TOPIC
 	about_ACLTools
 
 SHORT DESCRIPTION
 	Explains how to use the ACLTools powershell module
 
 LONG DESCRIPTION
-	<Insert Content here>
+	ACLTools contains the cmdlet Update-ACL, which is designed to manage
+	acls on files system shares. This project was originally started because
+	there previously existed no way of modifying NTFS permissions easily.
+
+	There are infact Get-ACL and Set-ACL, but this usually requires that you
+	already know what Rights are possible, what Propogation and Inheritance mean,
+	and could easily remember which order these needed to be applied in. If you
+	already have experience with permissions you could  possibly use something
+	like cacls.exe but this was not something natively done in PowerShell.
+
+FILE SECURITY
+	Each file that exists on a system has an object represented by the
+	[System.Security.AccessControl.FileSecurity] class. This allows users to
+	upadte, add, or remove a permission via gui or code.
+
+	This class provides the following methods:
+		> AddAccessRule(FileSystemAccessRule)
+		> GetAccessRules(Boolean, Boolean, Type)
+		> RemoveAccessRule(FileSystemAccessRule)
+		> RemoveAccessRuleAll(FileSystemAccessRule)
+		> SetAccessRule(FileSystemAccessRule)
+		> SetOwner(IdentityReference)
+
+	Each one of these methods takes a different input that make this more
+	complicated for one using the PowerShell
+
+FILE SYSTEM ACCESS RULE
+	The class used by Set-ACL on a file system and the one found in most
+	of the Methods for the [FileSecurity] class is the
+	[system.security.accesscontrol.filesystemaccessrule] class
+
+	In basic this class "Represents an abstraction of an access
+	control entry (ACE) that defines an access rule for a file or directory."
+	A constructor can be built off of this class for a [FileSystemAccessRule],
+	but you must first know:
+
+		> IdentityRefernce (User the ACE will apply too)
+		> FileSystemRights (What Permissions the User will have)
+		> InheritanceFlags (Will the Permissions be inherited by child objects)
+		> PropogationFlags (Are the InheritanceFlags forced onto child objects)
+		> AccessControlType (Will this user be Allowed or Denied)
+
+	Once you have all of these you can create an ACE that can be applied to a file.
+	The general combinations would be:
+		IdentityReference, FileSystemRights, AccessControlType
+		or
+		IdentityReference, FileSystemRights, InheritanceFlags, PropogationFlags, AccessControlType
+
+FILE SYSTEM RIGHTS
+	There are quiet a few different FileSystemRights that can be applied and
+	understanding which each one does can be confusing. To add to this multiple
+	Apply and Denies of each one can be applied to one user on one file.
+	Below is the full list of right and their description.
+
+	Member name						Description
+	-----------						------------
+	AppendData 						Specifies the right to append data to the
+									end of a file.
+	ChangePermissions				Specifies the right to change the security
+									and audit
+									rules associated with a file or folder.
+	CreateDirectories				Specifies the right to create a folder.
+	CreateFiles						Specifies the right to create a file.
+	Delete							Specifies the right to delete a folder or file.
+	DeleteSubdirectoriesAndFiles	Specifies the right to delete a folder and any
+									files contained within that folder.
+	ExecuteFile						Specifies the right to run an application file.
+	FullControl						Specifies the right to exert full control over
+									a folder or file, and to modify access control
+									and audit rules. This value represents the right
+									to do anything with a file and is the combination
+									of all rights in this enumeration.
+	ListDirectory					Specifies the right to read the contents of a
+									directory.
+	Modify							Specifies the right to read, write, list folder
+									contents, delete folders and files, and run
+									application files. This right includes the
+									ReadAndExecute right, the Write right, and the
+									Delete right.
+	Read							Specifies the right to open and copy folders or
+									files as read-only. This right includes the
+									ReadData right, ReadExtendedAttributes right,
+									ReadAttributes right, and ReadPermissions right.
+	ReadAndExecute					Specifies the right to open and copy folders or
+									files as read-only, and to run application files.
+									This right includes the Read right and the
+									ExecuteFile right.
+	ReadAttributes					Specifies the right to open and copy file system
+									attributes from a folder or file. For example,
+									this value specifies the right to view the file
+									creation or modified date. This does not include
+									the right to read data, extended file system
+									attributes, or access and audit rules.
+	ReadData						Specifies the right to open and copy a file or
+									folder. This does not include the right to read
+									file system attributes, extended file system
+									attributes, or access and audit rules.
+	ReadExtendedAttributes			Specifies the right to open and copy extended
+									file system attributes from a folder or file.
+									For example, this value specifies the right to
+									view author and content information. This does
+									not include the right to read data, file system
+									attributes, or access and audit rules.
+	ReadPermissions					Specifies the right to open and copy access and
+									audit rules from a folder or file. This does not
+									include the right to read data, file system
+									attributes, and extended file system attributes.
+	Synchronize						Specifies whether the application can wait for a
+									file handle to synchronize with the completion
+									of an I/O operation.
+	TakeOwnership					Specifies the right to change the owner of a
+									folder or file. Note that owners of a resource
+									have full access to that resource.
+	Traverse						Specifies the right to list the contents of a
+									folder and to run applications contained within
+									that folder.
+	Write							Specifies the right to create folders and files,
+									and to add or remove data from files. This right
+									includes the WriteData right, AppendData right,
+									WriteExtendedAttributes right, and
+									WriteAttributes right.
+	WriteAttributes					Specifies the right to open and write file system
+									attributes to a folder or file. This does not
+									nclude the ability to write data, extended
+									attributes, or access and audit rules.
+	WriteData						Specifies the right to open and write to a file
+									or folder. This does not include the right to
+									open and write file system attributes, extended
+									file system attributes, or access and audit rules.
+	WriteExtendedAttributes			Specifies the right to open and write extended
+									file system attributes to a folder or file. This
+									does not include the ability to write data,
+									attributes, or access and audit rules.
+
+INHERITANCE AND PROPOGATION
+	After Rights the next thing to sort out are the nature of Inheritance and
+	Propogation. The InheritanceFlags determine if the ACE of a partent folder
+	are passed along to subsequent files. These usually apply when setting
+	permissions on a folder and not on a file, but can be present if inherited.
+	InheritanceFlag Types:
+
+	Member name			Description
+	-----------			------------
+	ContainerInherit	The ACE is inherited by child container objects.
+	None				The ACE is not inherited by child objects.
+	ObjectInherit		The ACE is inherited by child leaf objects.
+
+	PropogationFlags likewise apply to child objects, but only matter if
+	the InheritanceFlags are set to anything except None.
+	PropogationFlag Types:
+
+	Member name			Description
+	-----------			------------
+	InheritOnly			Specifies that the ACE is propagated only to child objects.
+						This includes both container and leaf child objects.
+	None				Specifies that no inheritance flags are set.
+	NoPropagateInherit	Specifies that the ACE is not propagated to child objects.
+
+	These too are often tricky to keep seperate, but you can think of an
+	InheritanceFlag as the 'What' of a permission set, and the PropogationFlag
+	as the 'How' of a permission set. Meaning that an ACE with ContainerInherit
+	and InheritOnly will allow you to figure out what, and how a folder or file
+	gets it's permissions. A folder would inherit, but a file would not.
 
 KEYWORDS
 	ACLTools
+
+SEEALSO
+	https://msdn.microsoft.com/en-us/library/system.security.accesscontrol.filesecurity(v=vs.110).aspx
+	https://msdn.microsoft.com/en-us/library/system.security.accesscontrol.filesystemaccessrule(v=vs.110).aspx
+	https://msdn.microsoft.com/en-us/library/system.security.accesscontrol.filesystemrights(v=vs.110).aspx
+	https://msdn.microsoft.com/en-us/library/system.security.accesscontrol.inheritanceflags(v=vs.110).aspx
+	https://msdn.microsoft.com/en-us/library/system.security.accesscontrol.propagationflags(v=vs.110).aspx

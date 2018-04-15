@@ -1,4 +1,4 @@
-New-PSFLicense -Product 'ACLTools' -Manufacturer 'Joshua Corrick' -ProductVersion $PSModuleVersion -ProductType Module -Name MIT -Version "0.0.1" -Date (Get-Date "2018-04-11") -Text @"
+﻿New-PSFLicense -Product 'ACLTools' -Manufacturer 'Joshua Corrick' -ProductVersion $PSModuleVersion -ProductType Module -Name MIT -Version "0.0.1" -Date (Get-Date "2018-04-11") -Text @"
 Copyright (c) 2018 Joshua Corrick
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
