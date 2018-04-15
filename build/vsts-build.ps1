@@ -6,7 +6,7 @@ Insert any build steps you may need to take before publishing it here.
 #>
 param (
 	$ApiKey,
-	$WhatIf
+	[switch]$WhatIf
 )
 
 if ($WhatIf) { Publish-Module -Path "$($env:SYSTEM_DEFAULTWORKINGDIRECTORY)\ACLTools" -NuGetApiKey $ApiKey -Force -WhatIf }
