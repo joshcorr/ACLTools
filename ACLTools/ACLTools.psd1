@@ -91,10 +91,10 @@
 			Tags = @('ACL','Security','NTFS','FileSystemRights')
 
 			# A URL to the license for this module.
-			# LicenseUri = 'Github link'
+			LicenseUri = 'https://github.com/joshcorr/ACLTools/blob/master/LICENSE'
 
 			# A URL to the main website for this project.
-			# ProjectUri = 'Github link'
+			ProjectUri = 'https://github.com/joshcorr/ACLTools'
 
 			# A URL to an icon representing this module.
 			# IconUri = ''
