@@ -1,6 +1,9 @@
 # Description
 
 ACLTools is a Module that contains the missing Update-ACL cmdlet for PowerShell.
+The module structure was created using the PSFramework(https://github.com/PowershellFrameworkCollective) by https://github.com/FriedrichWeinmann.
+
+Written by Joshua Corrick (@joshCorr). Licensed under MIT. 2018
 
 ## Build Status
 <table>
@@ -20,6 +23,8 @@ ACLTools is a Module that contains the missing Update-ACL cmdlet for PowerShell.
     </tbody>
 </table>
 
+## Syntax and Use
+
 Update-ACL can be used in a few different ways:
 
 Add, Update, or Remove a specific ACL
@@ -33,8 +38,3 @@ Reset the Inheritance on the item
 
 Disable Inheritance on an item or path
 ```Update-ACL -Path C:\temp\file.txt -DisableInheritance```
-
-The module structure was created using the PSFramework (https://github.com/PowershellFrameworkCollective) by https://github.com/FriedrichWeinmann.
-
-Written by Joshua Corrick (@joshCorr)
-Licensed under MIT. 2018
