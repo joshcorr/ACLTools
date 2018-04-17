@@ -9,5 +9,5 @@ param (
 	[switch]$WhatIf
 )
 
-if ($WhatIf) { Publish-Module -Path "$($env:SYSTEM_DEFAULTWORKINGDIRECTORY)\ACLTools" -NuGetApiKey $ApiKey -Force -WhatIf }
-else { Publish-Module -Path "$($env:SYSTEM_DEFAULTWORKINGDIRECTORY)\ACLTools" -NuGetApiKey $ApiKey -Force }
+if ($WhatIf) { Publish-Module -Path "$($env:SYSTEM_DEFAULTWORKINGDIRECTORY)\ACLTools\ACLTools" -NuGetApiKey $ApiKey -Force -WhatIf }
+else { Publish-Module -Path "$($env:SYSTEM_DEFAULTWORKINGDIRECTORY)\ACLTools\ACLTools" -NuGetApiKey $ApiKey -Force }
