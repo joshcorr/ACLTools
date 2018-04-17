@@ -2,6 +2,20 @@
 
 ACLTools is a Module that contains the missing Update-ACL cmdlet for PowerShell.
 
+## Build Status
+<table>
+    <tbody>
+        <tr>
+            <td><img align="left" src="https://corrickcode.visualstudio.com/_apis/public/build/definitions/ea27adb2-57cd-4762-a87b-14bccd302059/2/badge"></td>
+            <td>Development Branch</td>
+        </tr>
+        <tr>
+            <td><img align="left" src="https://corrickcode.visualstudio.com/_apis/public/build/definitions/ea27adb2-57cd-4762-a87b-14bccd302059/1/badge"></td>
+            <td>Master Branch</td>
+        </tr>
+    </tbody>
+</table>
+
 Update-ACL can be used in a few different ways:
 
 Add, Update, or Remove a specific ACL
