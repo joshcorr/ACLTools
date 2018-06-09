@@ -1,7 +1,4 @@
 # Functions
 
-This is the folder where the functions go.
-
-Depending on the complexity of the module, it is recommended to subdivide them into subfolders.
-
-The module will pick up all .ps1 files recursively
+This module currently only has one function.
+It is the Update-ACL cmdlet which allows you to update a file system acl on a windows machine.

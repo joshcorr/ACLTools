@@ -10,7 +10,7 @@ Update-ACL leverages the System.Security.AccessControl .net class to set file an
 Path of folders or files that needs permission changes
 
 .PARAMETER Rights
-The rights that are granted to the user. You may assign any of the following rights: `
+The rights that are granted to the user. You may assign any of the following rights:
     AppendData,ChangePermissions,CreateDirectories,CreateFiles,Delete,DeleteSubdirectoriesAndFiles,
 	ExecuteFile,FullControl,ListDirectory,Modify,Read,ReadAndExecute,ReadAttributes,ReadData,ReadExtendedAttributes,
 	ReadPermissions,Synchronize,TakeOwnership,Traverse,Write,WriteAttributes,WriteData,WriteExtendedAttributes
