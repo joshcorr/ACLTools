@@ -3,7 +3,9 @@
 	RootModule = 'ACLTools.psm1'
 
 	# Version number of this module.
-	ModuleVersion = '0.1.1'
+
+  ModuleVersion = '0.1.1'
+
 
 	# ID used to uniquely identify this module
 	GUID = '0395d5d8-418e-4a44-b400-ea7414608d20'
